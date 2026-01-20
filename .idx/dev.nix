@@ -31,7 +31,26 @@
 
             echo "Inserindo ZSH_DISABLE_COMPFIX=true..."
             sed -i '/^source \$ZSH\/oh-my-zsh.sh/i ZSH_DISABLE_COMPFIX=true' "$ZSHRC"
-        
+          fi
+
+          echo "Instalando Bun..."
+          if ! command -v bun &> /dev/null; then
+            curl -fsSL https://bun.sh/install | bash
+          fi
+
+          BUN_EXPORTS='
+            export BUN_INSTALL="$HOME/.bun"
+            export PATH="$BUN_INSTALL/bin:$PATH"
+          '
+
+          if ! grep -q "BUN_INSTALL" "$ZSHRC"; then
+            echo "Adicionando Bun ao .zshrc..."
+            echo "$BUN_EXPORTS" >> "$ZSHRC"
+          fi
+
+          echo "Instalando Angular CLI..."
+          if ! command -v ng &> /dev/null; then
+            bun add -g @angular/cli
           fi
         '';
       };
