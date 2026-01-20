@@ -15,6 +15,9 @@
         ohmyzsh-setup = ''
           echo "Verificando Oh My Zsh..."
 
+          export RUNZSH=no
+          export CHSH=no
+
           OHMYZSH="$HOME/.oh-my-zsh"
           ZSHRC="$HOME/.zshrc"
 
