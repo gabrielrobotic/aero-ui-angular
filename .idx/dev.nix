@@ -38,6 +38,9 @@
             curl -fsSL https://bun.sh/install | bash
           fi
 
+          export BUN_INSTALL="$HOME/.bun"
+          export PATH="$BUN_INSTALL/bin:$PATH"
+
           BUN_EXPORTS='
             export BUN_INSTALL="$HOME/.bun"
             export PATH="$BUN_INSTALL/bin:$PATH"
